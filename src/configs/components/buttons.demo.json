@@ -1,0 +1,23 @@
+{
+  "config": {
+    "name": "buttonsDemo",
+    "type": "div",
+    "show": true,
+    "props": {
+      "style": { "padding": 16, "display": "grid", "gap": 16 }
+    }
+  },
+  "components": [
+    {
+      "name": "actions",
+      "type": "buttonGroup",
+      "props": {
+        "gap": 12,
+        "buttons": [
+          { "id": "save", "value": "Save", "variant": "secondary", "type": "button" },
+          { "id": "submit", "value": "Submit", "variant": "primary", "type": "submit" }
+        ]
+      }
+    }
+  ]
+}

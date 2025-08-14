@@ -37,6 +37,47 @@
 */
 
 import type { ElementType } from "react";
+import Button from "../components/Button";
+import ButtonGroup from "../components/ButtonGroup";
+import { useActionRegistry } from "./actions/registry";
+import { useDynamicState } from "./GlobalState";
 
-// Components will be registered progressively without changing config format.
-export const componentRegistry: Record<string, ElementType> = {};
+// Button wrapper to support legacy `actiontype` and `label` props
+const ActionButton = (props: any) => {
+  const actions = useActionRegistry();
+  const { actiontype, onClick, label, children, ...rest } = props || {};
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (actiontype && actions[actiontype as keyof typeof actions]) {
+      try { (actions as any)[actiontype](); } catch { /* no-op */ }
+    }
+    onClick?.(e);
+  };
+  return (
+    <Button {...rest} onClick={handleClick}>
+      {children ?? label ?? rest.value}
+    </Button>
+  );
+};
+
+// ButtonGroup wrapper to support legacy shapes: `btnConfig`, `items`, or `buttons` and inject global state
+const WrappedButtonGroup = (props: any) => {
+  const { dynamicState } = useDynamicState();
+  const baseButtons = props.buttons ?? props.btnConfig ?? props.items ?? [];
+  const mapped = Array.isArray(baseButtons)
+    ? baseButtons.map((b: any) => ({ ...b, globalVariables: dynamicState }))
+    : [];
+  return (
+    <ButtonGroup
+      buttons={mapped}
+      className={props.className}
+      tw={props.tw}
+      buttonDefaults={props.buttonDefaults}
+      disabledAll={props.disabledAll}
+    />
+  );
+};
+
+export const componentRegistry: Record<string, ElementType> = {
+  button: ActionButton,
+  buttonGroup: WrappedButtonGroup,
+};
