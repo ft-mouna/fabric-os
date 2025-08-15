@@ -1,0 +1,61 @@
+{
+  "config": {
+    "name": "topnavDemo",
+    "type": "div",
+    "show": true,
+    "props": {
+      "style": { "padding": 16, "display": "grid", "gap": 16 }
+    }
+  },
+  "components": [
+    {
+      "name": "header",
+      "type": "header",
+      "props": {
+        "companyName": "ICICI",
+        "layout": "top",
+        "navPosition": "right",
+        "headerClassName": "bg-white border-b border-gray-200 text-black",
+        "navItemsClassName": "flex items-center gap-1",
+        "dropdownClassName": "bg-white text-black shadow-lg ring-1 ring-black/5 rounded-md py-1",
+        "profileClassName": "ml-auto flex items-center gap-2",
+        "containerClassName": "mx-auto max-w-6xl px-4",
+        "brandClassName": "flex items-center gap-3 py-2",
+        "menuButtonClassName": "inline-flex items-center justify-center rounded-md p-2 text-black hover:bg-gray-100 md:hidden",
+        "navItems": [
+          { "type": "link", "label": "Home", "icon": "MdHome", "href": "/" },
+          {
+            "label": "Products",
+            "icon": "FaBoxes",
+            "dropdown": [
+              {
+                "type": "link",
+                "label": "Catalog",
+                "icon": "FiList",
+                "action": [{ "source": "navigation", "path": "/catalog" }]
+              }
+            ]
+          },
+          {
+            "label": "Refresh",
+            "icon": "FiRefreshCcw",
+            "action": [{ "source": "client", "functionName": "refreshData" }]
+          }
+        ],
+        "profile": {
+          "name": "John Doe",
+          "avatar": "/images/avatar.svg",
+          "menuItems": [
+            { "type": "link", "label": "Profile", "icon": "FiUser", "href": "/profile" },
+            {
+              "type": "signout",
+              "label": "Sign Out",
+              "icon": "FiLogOut",
+              "action": [{ "source": "client", "functionName": "appSignOut" }]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
