@@ -354,18 +354,22 @@ const Header: React.FC<HeaderProps> = ({ config }) => {
 
   const ProfileMenu = (
     <div className="relative" ref={profileRef} role="none">
-      <button onClick={() => setIsProfileOpen(!isProfileOpen)} aria-haspopup="menu" aria-expanded={isProfileOpen} className="p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-current">
-        <img src={config.profile.avatar} alt={config.profile.name || 'User'} className="h-10 w-10 rounded-full" />
-      </button>
-      {isProfileOpen && (
-        <div className={profileMenuClass} role="menu">
-          {config.profile.name && (
-            <div className="px-4 py-2">
-              <p className="font-semibold">{config.profile.name}</p>
-            </div>
-          )}
-          <ul>
-            {config.profile.menuItems.map((item, index) => (
+      {(() => {
+        const profile = config?.profile || { avatar: '/images/user-avatar.png', name: 'User', menuItems: [] };
+        return (
+          <>
+            <button onClick={() => setIsProfileOpen(!isProfileOpen)} aria-haspopup="menu" aria-expanded={isProfileOpen} className="p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-current">
+              <img src={profile.avatar} alt={profile.name || 'User'} className="h-10 w-10 rounded-full" />
+            </button>
+            {isProfileOpen && (
+              <div className={profileMenuClass} role="menu">
+                {profile.name && (
+                  <div className="px-4 py-2">
+                    <p className="font-semibold">{profile.name}</p>
+                  </div>
+                )}
+                <ul>
+                  {Array.isArray(profile.menuItems) && profile.menuItems.map((item, index) => (
               <li key={index} className={cn('px-4 py-2 text-xs', item.type === 'link' && 'hover:opacity-90')} role="none">
                 {item.type === 'link' && !item.action && !item.onClick && (
                   <Link href={item.href || ''} passHref legacyBehavior>
@@ -390,10 +394,13 @@ const Header: React.FC<HeaderProps> = ({ config }) => {
                   </button>
                 )}
               </li>
-            ))}
-          </ul>
-        </div>
-      )}
+                  ))}
+                </ul>
+              </div>
+            )}
+          </>
+        );
+      })()}
     </div>
   );
 
