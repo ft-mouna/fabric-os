@@ -1,0 +1,30 @@
+{
+  "config": {
+    "name": "roles-page",
+    "type": "div",
+    "props": {
+      "className": "p-4"
+    }
+  },
+  "components": [
+    {
+      "name": "roleCards",
+      "type": "cards",
+      "props": {
+        "layout": "grid",
+        "columns": 3,
+        "containerClassName": "max-w-6xl mx-auto",
+        "gridClassName": "gap-4",
+        "cardClassName": "",
+        "items": [
+          { "title": "UAM Maker",   "subtitle": "User Access Management", "icon": "FiUserPlus",   "linkText": "Open", "href": "/uam/maker" },
+          { "title": "UAM Checker", "subtitle": "User Access Review",    "icon": "FiUserCheck",  "linkText": "Open", "href": "/uam/checker" },
+          { "title": "OPS Maker",   "subtitle": "Operations",            "icon": "FiSettings",   "linkText": "Open", "href": "/ops/maker" },
+          { "title": "OPS Checker", "subtitle": "Ops Review",            "icon": "FiCheckCircle", "linkText": "Open", "href": "/ops/checker" },
+          { "title": "Sales Maker", "subtitle": "Sales Process",         "icon": "FiTrendingUp", "linkText": "Open", "href": "/sales/maker" },
+          { "title": "Sales Checker", "subtitle": "Sales Review",        "icon": "FiClipboardCheck", "linkText": "Open", "href": "/sales/checker" }
+        ]
+      }
+    }
+  ]
+}

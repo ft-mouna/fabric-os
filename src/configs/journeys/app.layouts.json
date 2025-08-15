@@ -1,0 +1,184 @@
+{
+  "journeylayouts": {
+    "applicationlayouts": {
+      "roles": {
+        "path": "roles",
+        "allowedRoles": [
+          "DDF0D3F7-207B-4626-9219-6F9491555777",
+          "DD1C74D2-6A2C-46B6-B6B6-899066D4F280",
+          "B5BE25BF-3A80-4C1E-96AB-36AE3F9D99A6",
+          "69DB5FAD-7D4F-45EA-9D92-C18168BE0745",
+          "00C930D1-FDD5-446A-A99A-554BC49DCA7F"
+        ],
+        "layout": {
+          "layoutId": "ROLES_DASHBOARD_LAYOUT",
+          "layoutType": "CARD_LAYOUT",
+          "layoutConfig": {
+            "config": { "name": "roles-root", "type": "div", "props": { "className": "p-4" } },
+            "components": [
+            { "name": "rolesHeader", "type": "header", "props": { "title": "Roles", "subtitle": "Choose a dashboard" } },
+            {
+              "name": "rolesCards",
+              "type": "cards",
+              "props": {
+                "layout": "grid",
+                "columns": 3,
+                "containerClassName": "max-w-6xl mx-auto",
+                "gridClassName": "gap-4",
+                "items": [
+                  { "title": "UAM Maker",   "subtitle": "User Access Management", "icon": "FiUserPlus",      "linkText": "Open", "href": "/app/uam-maker" },
+                  { "title": "UAM Checker", "subtitle": "User Access Review",    "icon": "FiUserCheck",     "linkText": "Open", "href": "/app/uam-checker" },
+                  { "title": "OPS Maker",   "subtitle": "Operations",            "icon": "FiSettings",      "linkText": "Open", "href": "/app/ops-maker" },
+                  { "title": "OPS Checker", "subtitle": "Ops Review",            "icon": "FiCheckCircle",   "linkText": "Open", "href": "/app/ops-checker" },
+                  { "title": "Sales Maker", "subtitle": "Sales Process",         "icon": "FiTrendingUp",    "linkText": "Open", "href": "/app/sales-maker" },
+                  { "title": "Sales Checker", "subtitle": "Sales Review",        "icon": "FiClipboardCheck", "linkText": "Open", "href": "/app/sales-checker" }
+                ]
+              }
+            }
+          ]
+          }
+        }
+      },
+
+      "uam-maker": {
+        "path": "app/uam-maker",
+        "allowedRoles": [
+          "DDF0D3F7-207B-4626-9219-6F9491555777"
+        ],
+        "layout": {
+          "layoutId": "UAM_MAKER_LAYOUT",
+          "layoutType": "CARD_LAYOUT",
+          "layoutConfig": {
+            "config": { "name": "uam-maker-root", "type": "div", "props": { "className": "p-4" } },
+            "components": [
+            { "name": "header", "type": "header", "props": { "title": "UAM Maker", "subtitle": "User creation & updates" } },
+            {
+              "name": "content",
+              "type": "div",
+              "props": { "className": "grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto" },
+              "nestedChildren": [
+                { "name": "quickActions", "type": "cards", "props": { "layout": "grid", "columns": 3, "items": [
+                  { "title": "Create User", "icon": "FiUserPlus", "linkText": "Go", "href": "/app/uam-maker" },
+                  { "title": "Bulk Upload", "icon": "FiUpload", "linkText": "Go", "href": "/app/uam-maker" },
+                  { "title": "Templates", "icon": "FiFileText", "linkText": "Go", "href": "/app/uam-maker" }
+                ] } },
+                { "name": "notifications", "type": "toast", "props": { "config": { "message": "Welcome UAM Maker", "type": "success", "triggerOnMount": false } } },
+                { "name": "info", "type": "div", "props": { "className": "col-span-3 text-sm text-gray-600", "children": "Use the quick actions to proceed." } }
+              ]
+            }
+          ]
+          }
+        }
+      },
+
+      "uam-checker": {
+        "path": "app/uam-checker",
+        "allowedRoles": [
+          "DD1C74D2-6A2C-46B6-B6B6-899066D4F280"
+        ],
+        "layout": {
+          "layoutId": "UAM_CHECKER_LAYOUT",
+          "layoutType": "CARD_LAYOUT",
+          "layoutConfig": {
+            "config": { "name": "uam-checker-root", "type": "div", "props": { "className": "p-4" } },
+            "components": [
+            { "name": "header", "type": "header", "props": { "title": "UAM Checker", "subtitle": "Review pending changes" } },
+            { "name": "cards", "type": "cards", "props": { "layout": "grid", "columns": 2, "items": [
+              { "title": "Pending Approvals", "count": 8, "icon": "FiInbox", "linkText": "View", "href": "/app/uam-checker" },
+              { "title": "Rejected", "count": 2, "icon": "FiXCircle", "linkText": "View", "href": "/app/uam-checker" }
+            ] } },
+            { "name": "notify", "type": "toast", "props": { "config": { "message": "Loaded UAM Checker", "type": "info", "triggerOnMount": false } } }
+          ]
+          }
+        }
+      },
+
+      "ops-maker": {
+        "path": "app/ops-maker",
+        "allowedRoles": [
+          "B5BE25BF-3A80-4C1E-96AB-36AE3F9D99A6"
+        ],
+        "layout": {
+          "layoutId": "OPS_MAKER_LAYOUT",
+          "layoutType": "CARD_LAYOUT",
+          "layoutConfig": {
+            "config": { "name": "ops-maker-root", "type": "div", "props": { "className": "p-4" } },
+            "components": [
+            { "name": "header", "type": "header", "props": { "title": "OPS Maker", "subtitle": "Operations initiation" } },
+            { "name": "cards", "type": "cards", "props": { "layout": "grid", "columns": 3, "items": [
+              { "title": "New Ticket", "icon": "FiPlusSquare", "linkText": "Open", "href": "/app/ops-maker" },
+              { "title": "My Tickets", "icon": "FiList", "linkText": "Open", "href": "/app/ops-maker" },
+              { "title": "Reports", "icon": "FiBarChart2", "linkText": "Open", "href": "/app/ops-maker" }
+            ] } }
+          ]
+          }
+        }
+      },
+
+      "ops-checker": {
+        "path": "app/ops-checker",
+        "allowedRoles": [
+          "69DB5FAD-7D4F-45EA-9D92-C18168BE0745"
+        ],
+        "layout": {
+          "layoutId": "OPS_CHECKER_LAYOUT",
+          "layoutType": "CARD_LAYOUT",
+          "layoutConfig": {
+            "config": { "name": "ops-checker-root", "type": "div", "props": { "className": "p-4" } },
+            "components": [
+            { "name": "header", "type": "header", "props": { "title": "OPS Checker", "subtitle": "Validate operations" } },
+            { "name": "cards", "type": "cards", "props": { "layout": "grid", "columns": 2, "items": [
+              { "title": "Pending Reviews", "count": 5, "icon": "FiEye", "linkText": "View", "href": "/app/ops-checker" },
+              { "title": "Escalations", "count": 1, "icon": "FiAlertTriangle", "linkText": "View", "href": "/app/ops-checker" }
+            ] } }
+          ]
+          }
+        }
+      },
+
+      "sales-maker": {
+        "path": "app/sales-maker",
+        "allowedRoles": [
+          "00C930D1-FDD5-446A-A99A-554BC49DCA7F"
+        ],
+        "layout": {
+          "layoutId": "SALES_MAKER_LAYOUT",
+          "layoutType": "CARD_LAYOUT",
+          "layoutConfig": {
+            "config": { "name": "sales-maker-root", "type": "div", "props": { "className": "p-4" } },
+            "components": [
+            { "name": "header", "type": "header", "props": { "title": "Sales Maker", "subtitle": "Leads & pipeline" } },
+            { "name": "cards", "type": "cards", "props": { "layout": "grid", "columns": 3, "items": [
+              { "title": "New Lead", "icon": "FiUserPlus", "linkText": "Open", "href": "/app/sales-maker" },
+              { "title": "Pipeline", "icon": "FiTrendingUp", "linkText": "Open", "href": "/app/sales-maker" },
+              { "title": "Conversions", "icon": "FiCheckCircle", "linkText": "Open", "href": "/app/sales-maker" }
+            ] } },
+            { "name": "notify", "type": "toast", "props": { "config": { "message": "Welcome Sales Maker", "type": "success", "triggerOnMount": false } } }
+          ]
+          }
+        }
+      },
+
+      "sales-checker": {
+        "path": "app/sales-checker",
+        "allowedRoles": [
+          "00C930D1-FDD5-446A-A99A-554BC49DCA7F"
+        ],
+        "layout": {
+          "layoutId": "SALES_CHECKER_LAYOUT",
+          "layoutType": "CARD_LAYOUT",
+          "layoutConfig": {
+            "config": { "name": "sales-checker-root", "type": "div", "props": { "className": "p-4" } },
+            "components": [
+            { "name": "header", "type": "header", "props": { "title": "Sales Checker", "subtitle": "Review sales activities" } },
+            { "name": "cards", "type": "cards", "props": { "layout": "grid", "columns": 2, "items": [
+              { "title": "Approvals", "count": 3, "icon": "FiUserCheck", "linkText": "View", "href": "/app/sales-checker" },
+              { "title": "Rejections", "count": 1, "icon": "FiXOctagon", "linkText": "View", "href": "/app/sales-checker" }
+            ] } }
+          ]
+          }
+        }
+      }
+    }
+  }
+}
