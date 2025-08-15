@@ -41,8 +41,13 @@ import Button from "../components/Button";
 import ButtonGroup from "../components/ButtonGroup";
 import { useActionRegistry } from "./actions/registry";
 import { useDynamicState } from "./GlobalState";
+import Header from "../components/Header";
+import Card from "../components/Card";
+import Modal from "../components/Modal";
+import Toast from "../components/Toast";
+import Toaster from "../sample/common/Toaster";
+import { ToastProvider } from "../sample/common/ToastContext";
 
-// Button wrapper to support legacy `actiontype` and `label` props
 const ActionButton = (props: any) => {
   const actions = useActionRegistry();
   const { actiontype, onClick, label, children, ...rest } = props || {};
@@ -59,7 +64,6 @@ const ActionButton = (props: any) => {
   );
 };
 
-// ButtonGroup wrapper to support legacy shapes: `btnConfig`, `items`, or `buttons` and inject global state
 const WrappedButtonGroup = (props: any) => {
   const { dynamicState } = useDynamicState();
   const baseButtons = props.buttons ?? props.btnConfig ?? props.items ?? [];
@@ -77,7 +81,37 @@ const WrappedButtonGroup = (props: any) => {
   );
 };
 
+const WrappedHeader = (props: any) => {
+  const config = props?.config ?? props;
+  return <Header config={config} />;
+};
+
+const WrappedCard = (props: any) => {
+  const config = props?.config ?? props;
+  return <Card config={config} />;
+};
+
+const WrappedModal = (props: any) => {
+  const config = props?.config ?? props;
+  return <Modal config={config} />;
+};
+
+const WrappedToast = (props: any) => {
+  const config = props?.config ?? props;
+  return (
+    <ToastProvider>
+      <Toaster />
+      <Toast config={config} />
+    </ToastProvider>
+  );
+};
+
 export const componentRegistry: Record<string, ElementType> = {
+  div: 'div',
   button: ActionButton,
   buttonGroup: WrappedButtonGroup,
+  header: WrappedHeader,
+  cards: WrappedCard,
+  modal: WrappedModal,
+  toast: WrappedToast
 };
